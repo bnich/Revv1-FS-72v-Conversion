@@ -29,6 +29,12 @@ require power before the phase that supplies it.
 steps, the work-order BOM and sequence, and the build sheet's order tracker.** Open issues belong in
 the checklist's blockers list, not only in the log.
 
+## ⚠️ The public build sheet is deliberately redacted
+
+`docs/build-sheet.md` differs from any older private copy **on purpose**: financing arrangements and a
+personalised vendor discount code were removed. Prices stayed, because they are useful to anyone
+costing the same build. **Do not "resync" those back in.**
+
 ## Totals
 
 The build sheet's totals (Committed / Remaining / All-in) and its order-tracker table must be
