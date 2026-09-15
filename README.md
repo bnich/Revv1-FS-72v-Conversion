@@ -20,7 +20,7 @@ repositories, linked below.
 |---|---|
 | **this repo** | Build sheet · checklist · work order · issues log · parts list · brake circuit |
 | [**revv1fs-fardriver72450**](https://github.com/bnich/revv1fs-fardriver72450) | Printed under-seat mount for the controller. **Printed and in service** |
-| [**chaojie-touchscreen-gen4**](https://github.com/bnich/chaojie-touchscreen-gen4) | Printed handlebar mount and rear cowl for the 5" touchscreen |
+| [**chaojie-touchscreen-gen4**](https://github.com/bnich/chaojie-touchscreen-gen4) | Printed handlebar mount and rear cowl for the 5" touchscreen. Fit gauge printed and proven; the shaped parts are modelled and verified but **not yet printed** |
 | [**fardriver-esp32-body-module**](https://github.com/bnich/fardriver-esp32-body-module) | ESP32 body module — lighting, signals, horn, boost |
 
 ---
