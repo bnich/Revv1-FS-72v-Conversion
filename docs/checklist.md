@@ -87,6 +87,8 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
       diodes ×6 (+ spares), **AO3407A** P-channel MOSFET on a SOT-23 adapter, **10 kΩ** ×3,
       **100 nF** ceramic, **1 A mini-blade fuse + inline holder**, 2-pin locking connectors, 22 AWG
       wire. Step 1 (Phase 5) needs only two diodes, the 100 nF and the connectors
+- [ ] ⬜ **Boost lead (Phase 5, interim):** one **2-pin locking connector** pair of a style the
+      harness's brake / reverse / gear 2-pins cannot mate, 22 AWG wire, heat-shrink
 - [ ] ⬜ **Controller bracket hardware** — the metal list in Phase 3 (M5/M6 bolts, washers, nylocs,
       limiter tubes, threadlocker)
 
@@ -412,8 +414,18 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
       harness throttle lead directly. Bar controls come from the new switch sets (plan D20)
       - **FarDriver harness throttle lead (3-pin):**
         **red-white = ACC+ (power) · green-white = SV (signal) · black = GND**
-      - **The throttle's 2-pin RED BUTTON lead → ESP32 module → FarDriver boost input** (plan **D4**,
-        hold / toggle modes). Capped until the module exists
+      - **Throttle's own 3-pin lead:** **red = ACC+ · yellow = SV · black = GND**
+      - **The throttle's 2-pin RED BUTTON lead (blue + green, momentary) → FarDriver boost, wired
+        DIRECT until the ESP32 module exists** (interim; plan **D4** moves it to the module later,
+        which adds hold / toggle modes and brake / key / timeout clears). Hold the button = boost:
+        - **Blue → blue/red `XH`** (the app's `CruisePin` PIN17, which becomes the boost input in 7.3)
+        - **Green → a FarDriver black GND** — the throttle plug's black is nearest; every harness
+          black is the same ground
+        - ⛔ **Do NOT use the stock 2-way XH plug as-is.** It pairs XH with the **brown** one-line
+          lead, not ground: the button would short the display's signal onto XH. Pin or cut XH out of
+          it and leave the brown on the display's purple
+        - Build it as a **dedicated 2-pin that cannot mate** the brake, reverse or gear plugs.
+          ⚠️ **Leave it UNMATED until 7.3** — the wire is metered first
       - ⚠️ **Identify every harness lead by COLOUR, not pin number** — FarDriver's published
         diagrams for the ND72450 **disagree on pin numbers** (throttle SV is pin 14 in one, 27
         in the other). The colours agree; the numbers don't. Full colour table: work order §3.0
@@ -592,6 +604,16 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
       **below 0.8 V** with each lever pulled. Motor cut: each lever stops the motor (the temporary
       throttle can drive the wheel for it). **This is a gate before first ride**: until it passes,
       the levers slow the bike mechanically while the motor keeps driving against them
+- [ ] ⚠️ ✔ **Boost (interim direct wiring, Phase 5)** — boost lead still **unmated**:
+      - ✔ Meter blue/red `XH` idle against black GND. Expect a **low logic-level pull-up** (≤ 15 V).
+        ⛔ **Pack voltage (72–84 V) means you have the pink `60VC`, not XH — stop** and re-identify
+      - Set **`BoostPin` → PIN17** (the `CruisePin` value; it ships `Invalid(off)`). Leave
+        `CruiseEnable` 0. Save
+      - Mate the boost lead. ✔ **Hold the red button → the app shows gear `Bst`; release → it drops
+        out.** No `Bst` = wrong wire or pin value; unmate and re-check
+      - ⚠️ **Boost changes nothing yet:** it runs at the custom cap, and `MaxLineCurr` =
+        `CustomMaxLineCurr` = **80 A**. Only an everyday cap below 80 A makes it do anything. The
+        boost cap **never exceeds 80 A** (XT90-S, ~90 A)
 - [ ] ✔ Verify **`Speed pulse` = 1** on the One Line page, with **`Special Frame` = 21** (issue #7)
 - [ ] **Hall self-learn is already done** (export shows phase offset **212.0°**, learned). Re-run
       **only** if the motor or phase wiring was disturbed: "test angle" / "self-study" on the angle
@@ -744,5 +766,5 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
 | Brake fluid | **MINERAL OIL** (confirmed) |
 | **Brake circuit** | `revv1-brake-circuit.md` — each lever, through 1N4148 steering diodes: pulls FarDriver `BL` low (motor cut, `Brake: 0-StopWhenGround`) · lights the brake lamp via P-FET `AO3407A` (no firmware) · signals the module (IN-05/06) · grey `BH` capped |
 | **Lighting** | ESP32 module, built incrementally — lamps, signals, horn (plan §6); brake lamp from the brake circuit |
-| **Throttle** | **FarDriver-bundled twist throttle installed** (2026-09-06) · red button → ESP32 module → boost, hold/toggle (plan D4) · bar controls from the new switch sets (D20) |
+| **Throttle** | **FarDriver-bundled twist throttle installed** (2026-09-06) · red button (blue + green) → blue/red `XH` + GND direct, hold = boost, `BoostPin` PIN17 (interim; → ESP32 module later, plan D4) · bar controls from the new switch sets (D20) |
 | **Controller mount** | two mirrored printed brackets (ASA, never PLA) on the four under-seat lugs · M5 × 4 frame side, M6 × 30 × 4 controller side · metal limiters in every hole |

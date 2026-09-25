@@ -199,8 +199,9 @@ service + upgrade, not full replacement.*
   **no screen of its own (D17)** — the Chaojie 3" is the only display
   (`revv1-esp32-module-plan.md` §2.1).
 - **Throttle: the FarDriver-bundled throttle is installed (2026-09-06).** It mates its own harness
-  lead; its **red button feeds the ESP32 module, which drives boost** with hold/toggle modes (plan
-  D4). Bar controls come from new aftermarket switch sets (plan D20; work order §5.2 / checklist
+  lead. Its **red button grounds blue/red `XH` directly for hold-to-boost until the ESP32 module
+  exists**; then it feeds the module, which drives boost with hold/toggle modes and safety clears
+  (plan D4). Bar controls come from new aftermarket switch sets (plan D20; work order §5.2 / checklist
   Phase 5).
 - **Display one-line (issue #7):** `SpecialFrame` **21** with the display's purple on the
   FarDriver's **brown** lead and `SpeedPulse` **1**. Shipped at 246, FarDriver's RS485 PC-link mode,

@@ -17,7 +17,7 @@ new controller, battery, high-current safety gear, torque arms, tires, and brake
 | # | Part | Key specs |
 |---|------|-----------|
 | 1 | Powerful Lithium **5,000W 3T hub motor** (complete rear wheel) | 20×4 rim · **6-bolt ISO** rotor mount · **16mm axle / 11mm flats** · Hall-sensor (2 sets) · tubed tire · **single-speed freewheel (pedal drive)** |
-| 2 | **FarDriver 72450** controller (loaded) | 48–72V (20S), 200A line / 450A phase · incl. throttle, 3" display, enclosure (too large — **not used**; the controller bolts directly to the printed brackets), controller/power cable · **bundled throttle installed** (§5.2); its red button → ESP32 module → boost (plan D4) |
+| 2 | **FarDriver 72450** controller (loaded) | 48–72V (20S), 200A line / 450A phase · incl. throttle, 3" display, enclosure (too large — **not used**; the controller bolts directly to the printed brackets), controller/power cable · **bundled throttle installed** (§5.2); its red button → boost, direct to blue/red `XH` until the ESP32 module takes it over (plan D4) |
 | 3 | **72V "Cadmus" battery** — 📦 on hand (received 2026-08-14) | 20S, Molicel P42A, 34Ah · smart BMS · **84.0V full charge** · mounts in Center Storage Cage · **main discharge connector type: TBD — record at install** (drives the B+/B− termination into the fuse/XT90-S line) |
 | 4 | **72V (20S) charger** — 📦 on hand (received 2026-08-14) | adjustable; charge lead terminated to XT90-S |
 | 5 | **Littelfuse `JLLN125` Class T fuse, 125A** (125 V DC · 20 kA @ 125 V DC) + **Blue Sea `5007100` Class T block** (160 V DC · 160 A max operating · four-stud bolt-down · ignition-protected **only with its cover secured** · 72 in-lb) — ⬜ **to order** (issue #10) | main-line fault protection. ⛔ **Do not fit the Blue Sea 5127 ANL 150A link + 5005 block that are in the parts box** — rated 80 V / 32 V DC, below the 84.0 V pack, and DC arcs do not self-extinguish. ⛔ **Never fit a 175/200 A link** — over the block's 160 A rating |
@@ -274,13 +274,14 @@ Its ground stars at the controller's B− stud.
 
 ### 5.2 Throttle — FarDriver-bundled throttle installed (2026-09-06)
 - The **FarDriver-bundled twist throttle is on the bar.** Its 3-pin lead mates the harness
-  throttle lead directly (harness: red-white ACC+ 5V · green-white SV · black GND — the
-  throttle-side signal wire is **yellow**; wire by function, not colour). All three reference
-  FarDriver ground.
-- Its **2-pin red-button lead** goes to the **ESP32 module**, which drives the FarDriver boost
-  input with hold / toggle modes (ESP32 plan **D4**, §7.1 there). Until the module exists, leave
-  it **capped** — ⚠️ do not plug it into whatever 2-pin fits: brake, cruise, boost, reverse and
-  3-speed share the same housing.
+  throttle lead directly (harness red-white ACC+ 5V · green-white SV · black GND ↔ throttle
+  **red · yellow · black**; wire by function, not colour). All three reference FarDriver ground.
+- Its **2-pin red-button lead (blue + green, momentary)** is wired **direct to the FarDriver until
+  the ESP32 module exists**: **blue → blue/red `XH`**, **green → black GND**, on its own 2-pin plug;
+  hold = boost. In the app `BoostPin` = **PIN17** (the `CruisePin` value). ⛔ **Not through the stock
+  2-way XH plug** — it pairs XH with the brown one-line lead, not ground. ⚠️ Meter XH before first
+  mating it (checklist 7.3); the same loom carries pink `60VC` at pack voltage. Later the lead moves
+  to the module, which adds hold / toggle modes and safety clears (ESP32 plan **D4**, §7.1 there).
 - Bar controls come from the new switch sets (ESP32 plan D20).
 - Calibration (set, §6): **1.1V = 0% · 3.9V = 100%**, reads 0.79V at rest ✓.
 
@@ -333,7 +334,7 @@ the 2026-09-08 changes and would put `Brake` back to `7-Disabled` (issue #8) and
 | Motor | **5000W** rated · **23 pole pairs** (vendor-programmed — not yet confirmed by Powerful Lithium) · max 3967 rpm in the app's units |
 | Hall sensors | ✓ **self-learn done** — phase offset **212.0°**. Re-run only if the motor or phase wiring is disturbed |
 | **Motor temperature** | ⚠️ **`NTC_PTC` = `5-KTY83-122`** ✓ · protect **120°C** / restore **90°C** (MOS 100/80°C). **Never `0-None`** — it reads a bogus **197°** and faults "7. Motor Temp Protect" (issue #5). ✔ Re-confirm plausible ambient at every power-up; a rail reading means the sensor isn't seen. ⬜ *Sensor type still to be verified with Powerful Lithium — matching at 25° does not prove the curve at 120°.* |
-| Throttle (**FarDriver-bundled twist, installed**) | **1.1V = 0% · 3.9V = 100%**, response Linear. Reads **0.79V at rest** ✓ = 0% (below the 1.1V floor → no startup over-throttle fault). Its red button → ESP32 module → FarDriver boost input (plan D4) |
+| Throttle (**FarDriver-bundled twist, installed**) | **1.1V = 0% · 3.9V = 100%**, response Linear. Reads **0.79V at rest** ✓ = 0% (below the 1.1V floor → no startup over-throttle fault). Its red button → blue/red `XH` + GND direct, `BoostPin` PIN17, hold = boost (interim; → ESP32 module later, plan D4) |
 | Brake cutoff | ✅ **`0-StopWhenGround`** (set 2026-09-08, confirmed in the controller export, issue #8). Braking pulls **`BL`** (yellow/green) to B− through the brake circuit (§5.3). ⛔ Never a **`P+`** variant (they bundle Park, which stays Disabled) and never **`1-StopWhenFloat`** (inverts the logic → motor cuts when *not* braking). ⚠️ **NOT YET VERIFIED — the powered cut test (brake circuit §7.2) has not run**. **GATE BEFORE FIRST RIDE.** **E-brake / regen stays OFF** (`Follow: Invalid`) |
 | Low-voltage cutoff | **60.0V** (3.0V/cell); power derate starts **+2V** (62V) |
 | Over-voltage protect | **90.7V / restore 88.7V — factory internal default for a 72V-rated unit. Leave it.** ⚠️ Do **not** set "~84V": a full pack sits at 84.0V and would trip it. With regen off the pack can never exceed 84.0V anyway |
