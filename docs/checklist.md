@@ -26,7 +26,7 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
 > - ⚠️ **#6 — reverse is still ON in the controller** (`BackEnable = 1`). Fix and verify at 7.3
 >   before any ride.
 > - ⚠️ **#8 — brake cutoff unproven:** build brake circuit step 1 (`revv1-brake-circuit.md` §6,
->   Phase 5) — check the lever type first (**M3**, §4) — then its level and motor-cut tests (§7.1–§7.2,
+>   Phase 5) — the MT5 switches are normally open (**M3** ✅, §4) — then its level and motor-cut tests (§7.1–§7.2,
 >   at 7.3 / Phase 8) are a gate before first ride.
 > - **#9 — bracket load path:** the frame side of each printed bracket bears on two 15 mm pads;
 >   larger pads or a second contact lower on the frame is undecided (Phase 3).
@@ -55,9 +55,9 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
 - [ ] High-wattage soldering iron + solder **or** hydraulic lug crimper (for 8–10 AWG)
 - [ ] Small crimper for 22–24 AWG signal terminals / bullet connectors
 - [ ] Wire strippers, flush cutters, heat-gun
-- [ ] Tire irons/levers + valve core tool (moto tire on a 4" rim is stiff — 3 irons help)
+- [ ] Tire irons/levers + valve core tool (a fat bead on a wide rim is stiff — 3 irons help)
 - [ ] **Chain tool** + spare master link (chain length may change with the new sprocket position)
-- [ ] **Brake bleed kit** matching fluid type (see 6.1) + nitrile gloves
+- [ ] **Magura bleed kit** + Magura Royal Blood (see 6.1) + nitrile gloves
 - [ ] Files (round + flat) for torque-arm flat fitment
 - [ ] Insulated screwdrivers/pliers for HV work; safety glasses
 - [ ] Bike stand / lift, or a way to hold the bike wheel-off-ground
@@ -70,9 +70,10 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
 - [ ] Ring terminals / lugs sized to the fuse-block studs and 8 AWG
 - [ ] Blue thread locker
 - [ ] Dielectric grease
-- [ ] Brake fluid (**mineral oil** — see 6.1), brake/contact cleaner, rags
+- [ ] Brake fluid (**Magura Royal Blood**, mineral oil — see 6.1), brake/contact cleaner, rags
 - [ ] 8 AWG silicone wire (if extending main leads)
-- [ ] **2× 16" tubes (front + rear) + 1 spare**
+- [ ] **2× Super73 fat tubes, 20 × 4/4.5/5 (front + rear) + 1 spare** — one spec fits both ends
+- [ ] **Rim strips ×2** (going back to bicycle tyres — issue #14)
 - [x] **Axle washers ×2** — fitted 2026-09-08 (issue #2); shop-made, material/hardness unrecorded
       (issue #12). If replaced: **keyed torque washers** for a 16mm axle / 11mm flats (the stock
       washer is this type — D-hole + step into the dropout slot), or on a confirmed-flat dropout
@@ -93,9 +94,11 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
       limiter tubes, threadlocker)
 
 ### 0.3 Resolve open items BEFORE starting
-- [x] **Pads identified:** LBN 4-piston = **Shimano Saint/Zee D-type** shape — fit
-      **sintered metal (D02S)**, NOT D03S (resin), front + rear
-- [x] **Brake fluid type — CONFIRMED MINERAL OIL** (marked on the lever reservoir)
+- [x] **Brakes: Magura MT5** front + rear, with Magura's pads (the ordered Shimano D02S do not fit
+      them — not used)
+- [x] **Brake fluid: mineral oil — Magura Royal Blood**
+- [x] **Brake switches (M3):** one per lever, **2-wire, normally open** — the brake circuit works as
+      drawn
 - [x] **Cadmus fits the Center Storage Cage — CONFIRMED** (vendor: Cadmus is "designed to be
       housed" in the Ride1Up Center Storage Cage; cage fits FS; already owned)
 - [x] ✔ FarDriver 72450 voltage **CONFIRMED**: 20S/72V-class, max input ~88V — handles the
@@ -111,8 +114,9 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
         the ANL 5127 + 5005 in the box are under-rated and must not be fitted)
 - [ ] XT90-S (main line) · [x] key switch (**purchased 2026-09-07** — "Universal Key Ignition for
       Ebike 12V-96V Anti-Theft") + [ ] ~2A inline fuse · [ ] Grin V6 torque arms ×2 ·
-      [ ] Shinko 241 ×2 + tubes
-- [ ] XT90-S 5-pack · [ ] brake pads (2 sets) + mineral oil · [ ] wire/heat-shrink/terminals
+      [ ] **Huntsman Override 20×4.0** (front) + **BDGR Override 20×4.5** (rear) + tubes
+      (bought 2026-09-17, issue #14 — ⛔ not the Shinko 241 pair)
+- [ ] XT90-S 5-pack · [x] Magura MT5 brakes + brake switches (fitted) · [ ] wire/heat-shrink/terminals
 - [ ] ESP32 module parts and the new bar switch sets (`revv1-module-bom.md`) — for PHASE 5B, as each
       function is built
 
@@ -154,9 +158,9 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
 
 - [ ] **Photograph** the stock wiring, connector routing, and brake-line path (reference)
 - [ ] Note the stock throttle/brake-lever connector types (some may be reusable)
-- [ ] **Keep the brake levers** — their switches drive the brake circuit; check their type first
-      (**M3**, `revv1-brake-circuit.md` §4). The handlebar pods are replaced by the new switch
-      sets (plan D20)
+- [x] **Brakes replaced by Magura MT5** front + rear — each lever's normally-open brake switch
+      drives the brake circuit (**M3** ✅, `revv1-brake-circuit.md` §4). The handlebar pods are
+      replaced by the new switch sets (plan D20)
 - [ ] Disconnect rear motor phase + hall connectors
 - [ ] **Drop the pedal chain** off the rear freewheel; then loosen/remove the rear **axle
       nuts** and lift the stock rear wheel/motor out of the dropouts (mind the caliper and rotor)
@@ -175,6 +179,10 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
 >
 > Order matters here: **tire first, then rotor, then into the frame.** Levering a stiff moto
 > tire onto the rim with the rotor already bolted on is how rotors get bent.
+>
+> ⚠️ **Tyres changed 2026-09-17 (issue #14).** The Shinko 241 3.00-16 pair is out — both rims
+> are far too wide for it. The build now runs **Huntsman Override 20×4.0 front / BDGR Override
+> 20×4.5 rear**. The rear fitting is **gated on a clearance measurement** — see 2.2.
 
 ### 2.1 Prep the new motor wheel
 - [ ] Inspect the motor, axle threads, and phase/hall cable for shipping damage
@@ -185,11 +193,21 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
       the washer fitted (0.2).
 
 ### 2.2 Mount the rear tire (wheel out of the bike, no rotor yet)
-- [ ] Fit the **Shinko 241 3.00-16** with a fresh 16" tube (respect the rotation arrow —
-      it must match the wheel's forward direction once installed)
+- [ ] ⚠️ ✔ **GATE — measure the tyre-to-controller gap at FULL COMPRESSION before mounting**
+      (issue #14). The **BDGR 20×4.5 adds +38 mm of radius** over the 3.00-16, so the gap must
+      exceed that. Measure it with the old tyre still fitted — zip tie on the shock shaft to
+      capture max travel. ⛔ The controller is already at its **35 mm** minimum drop and cannot go
+      up; under 38 mm the controller has to move, or the motor gets relaced to a 47–55 mm rim
+- [ ] Fit the **Super73 BDGR Override 20×4.5** with a fresh **20 × 4/4.5/5** tube (respect the
+      rotation arrow — it must match the wheel's forward direction once installed)
 - [ ] Seat the beads (inflate to the pressure on the sidewall, confirm an even bead line all
-      the way round, then set riding pressure)
+      the way round, then set riding pressure) — ⬜ **log the riding pressure**; none has ever
+      been recorded on this build
 - [ ] ✔ Confirm the valve stem sits square and isn't being pulled by the tube
+- [ ] ✔ **Swingarm clearance, both sides** — the 4.5 is 38 mm wider in section than the tyre it
+      replaces
+- [ ] ⬜ Measure and log the **rear rolling circumference** — it sets the FarDriver wheel
+      configuration in PHASE 7
 
 ### 2.3 Transfer the brake rotor (+ shim for issue #1)
 - [ ] Remove the **stock 203mm 6-bolt rotor** from the old hub (note rotor orientation /
@@ -255,14 +273,14 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
 - [ ] Note: pedaling is functional but vestigial at speed — mainly low-speed start / legal /
       limp-home
 
-### 2.8 Front wheel — tire swap (the second Shinko)
+### 2.8 Front wheel — tire swap
 - [ ] Note the **front axle type** (thru-axle vs nutted) and its torque spec before removal
-- [ ] Remove the front wheel; fit the second **Shinko 241 3.00-16** + fresh 16" tube
-      (rotation arrow!)
-- [ ] Seat the beads; set pressure
+- [ ] Remove the front wheel; fit the **Super73 Huntsman Override 20×4.0** + fresh
+      **20 × 4/4.5/5** tube (rotation arrow!)
+- [ ] Seat the beads; set pressure — ⬜ log it
 - [ ] Reinstall the wheel; torque the axle to the **Ride1Up spec**
 - [ ] ✔ Tire clears the fork crown, arch, and fender mounts at full compression **and** full
-      steering lock — the 3.00-16 is a different profile than stock
+      steering lock — **20×4.0 is the stock diameter so this should pass**, but confirm it
 
 ---
 
@@ -434,15 +452,14 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
       - ⚠️ Do **not** plug the red-button lead into whatever 2-pin fits: brake, cruise, boost,
         reverse and 3-speed all share the same housing. Match the **labeled** lead
 - [ ] ⚠️ **Brake circuit, step 1 — motor cut** (`revv1-brake-circuit.md` §2, §6):
-      - ✔ **First check each lever's switch type (M3, §4).** A normally-open two-wire switch works as
-        drawn; a normally-closed switch or a three-wire sensor needs the §4 notes before wiring
+      - ✅ **Switch type (M3, §4):** each MT5 lever's brake switch is **2-wire, normally open**
+        (open released, closed squeezed) — works as drawn
       - Wire each lever through its own **1N4148** (D1L / D1R, cathode toward the lever) to the
         FarDriver **`BL`** (yellow/green); lever return to **B−**. Fit the **100 nF** from `BL` to B−
         at the controller. Heat-shrink the diodes in-line
       - The grey **`BH`** stays capped
       - Tests §7.1 (levels) and §7.2 (motor cut) come at 7.3 / Phase 8 — **issue #8's gate before
         riding**. Steps 2 (brake lamp) and 3 (module sense) come with the module (PHASE 5B)
-- [ ] **Keep the stock brake levers** (hydraulic masters + integrated cutoff switches) as-is
 - [ ] Mount and connect the **FarDriver display** (none is fitted on the temporary setup)
       - **Display = Powerful Lithium 3"** (Chaojie `CJ-V3-01`, 376×960, 1000 cd/m², rated
         **DC 12–120 V** so it runs straight off pack voltage — no DC-DC).
@@ -521,23 +538,22 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
 
 ## PHASE 6 — Brakes  ⚠️
 
-### 6.1 Fluid type — CONFIRMED MINERAL OIL
-- [x] Reservoir cap reads **MINERAL OIL**
-- [ ] ✔ Use bicycle **mineral oil** + a mineral-compatible bleed kit (never DOT)
+### 6.1 Fluid — Magura Royal Blood (mineral oil)
+- [x] Brakes are **Magura MT5**, front + rear
+- [ ] ✔ Use **Magura Royal Blood** + a Magura bleed kit (never DOT)
 
 ### 6.2 Pads + rotor
-- [ ] Install **Shimano Saint/Zee D-type sintered pads (D02S** or equiv, NOT D03S resin) —
-      **one set front, one set rear** (same caliper type both ends)
-- [ ] Reinstall the **rear caliper** to its mount; center it over the 203mm rotor
+- [x] **Magura MT5 calipers fitted** front + rear, with Magura's pads, on the stock 203mm rotors
+- [ ] Center the **rear caliper** over the 203mm rotor
 - [ ] ✔ **Rear rotor/pad alignment (issue #1):** the rotor should sit centered between the
       pads thanks to the 2.3 shim stack. Fine-tune with the caliper mount first; add/remove a
       0.2mm ring only if the caliper can't take it out.
 - [ ] ✔ Pads contact the rotor squarely with an even gap; rotor spins free, no rub
-- [ ] ✔ Front caliper/rotor untouched and still aligned after the 2.8 wheel removal
+- [ ] ✔ Same check on the **front** MT5 caliper
 
 ### 6.3 Bleed (front and rear)
-- [ ] Bleed each circuit per the brake maker's procedure (caliper→lever, no air)
-- [ ] (Optional) fit **braided steel lines** before bleeding for a firmer lever
+- [x] Hoses cut to length (new barb + olive) and refilled
+- [ ] ✔ Bled per **Magura's** procedure, no air left in either circuit
 - [ ] ✔ Lever is firm (no sponginess); holds pressure; no leaks — **both ends**
 - [ ] ✔ Both **brake cutoffs** will be verified to cut motor power in **PHASE 8**
 
@@ -624,9 +640,12 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
       **90°C** (MOS 100/80°C). The sensor is the white wire in the hall connector (issue #5)
 - [ ] ✔ Confirm the motor temp **reads plausible ambient**, not a rail value. A rail reading
       means the sensor isn't being seen → **don't rely on the protection** until it's fixed
-- [ ] ✔ Verify wheel = **80 / 100 / 16** (tire width / aspect / rim = 3.00-16), transmission ratio
-      **1.000**. The app has **no circumference field**; the speedo gets checked against GPS in
-      PHASE 9. (Still measure the rolling circumference — it's the number you compare against)
+- [ ] ⚠️ ✔ **Re-derive the wheel setting — `80 / 100 / 16` was the 3.00-16 and is now WRONG**
+      (issue #14). The 20×4.5 rear adds **+13.6 %** of rolling circumference (~1753 → ~1992 mm),
+      so the speedo would read that much low. Candidate starting point **110 / 100 / 16**
+      (OD 626 mm). The app has **no circumference field**, so trim the **transmission ratio**
+      against GPS in PHASE 9. ⬜ Measure the real rolling circumference first — it is the number
+      you compare against
 - [ ] ✔ Save config; **export a fresh .heb into `fardriver/`** and write every value into the log
       at the end for handover
 
@@ -658,7 +677,8 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
 - [ ] Low-speed laps; test both brakes hard from ~15 mph (bed in pads)
 - [ ] Gradually increase speed; feel for wobble, brake fade, cutout, or heat
 - [ ] ✔ Confirm the **speedo against a GPS app**; if it's off, correct the app's **transmission
-      ratio** (tire fields stay 80/100/16 — there is no circumference field)
+      ratio** (there is no circumference field). ⚠️ The tire fields are **no longer 80/100/16** —
+      that was the 3.00-16 (issue #14)
 - [ ] ✔ Return; **immediately re-check** axle-nut torque (paint marks unbroken — issue #12),
       torque arms, rotor bolts, main-lead connections, and feel the motor/controller/battery for
       hot spots
@@ -697,7 +717,7 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
 | **M16 rear axle nut** | 🔴 **CONFIRM WITH POWERFUL LITHIUM** (issue #12) | The one number not to guess. It's a 16mm/M16 hub-motor axle, not a bicycle nut — bike-forum numbers don't apply. Ask before final assembly (0.3). |
 | Axle jam (slim) nut | run down hard against the primary nut | double-nut; it's a lock, not a clamp |
 | 6-bolt rotor bolts (M5) | **~4–6 Nm**, star pattern, blue loctite | Shimano specs **2–4 Nm** for their own bolts — follow whichever brand you're using |
-| Caliper mount bolts | ~6–10 Nm typical | per Ride1Up / caliper maker |
+| Caliper mount bolts, lever clamps | per **Magura's MT5 manual** | the calipers and levers are Magura MT5 — use Magura's figures |
 | Grin V6 clamp hardware | per **Grin's instructions** | ships with the arms — don't substitute |
 | Fuse-block studs | **72 in-lb max**, snug + no hand movement | Blue Sea 5007100 spec; re-check after first ride |
 | Front axle | per **Ride1Up spec** (differs thru-axle vs nutted) | note it before removal (2.8) |
@@ -716,7 +736,7 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
 | Rotor shim stack used (0.2mm × ?) | **4 × 0.2mm = 0.80mm** | 2026-09-08 |
 | Rotor bolt length used (stock / +2mm) | | |
 | Axle nut torque used (and where the spec came from) | | |
-| Brake levers (M3, brake circuit §4): wire count, NO / NC, released / squeezed Ω, own pair per lever? | | |
+| Brake levers (M3, brake circuit §4): wire count, NO / NC, released / squeezed Ω, own pair per lever? | **Magura MT5 switch: 2 wires, NO — open / closed**, one per lever | 2026-09-25 |
 | `BL` level, released / each lever pulled (brake circuit §7.1 — expect ~3.3 V / below 0.8 V) | | |
 | Controller location | under the seat, on the four frame lugs, two printed brackets | |
 | Mount boss: thread size (fwd / aft — may differ) | **M5** (screw major dia 4.84 mm) | 2026-09-06 |
@@ -737,10 +757,14 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
 | **Drop** — lug centre line to controller top face | **35 mm** — the physical minimum (plate hard up under the frame); tyre clearance cannot be found by raising the controller | 2026-09-08 |
 | ⬜ **Controller baseplate thickness at the bolt holes** — sets the M6 bolt length | | |
 | **Controller fore/aft shift** | **9.5 mm REARWARD of the lug midpoint** — both controller bolts land inside the lug span (50 mm behind the front lug, 31 mm ahead of the rear) | 2026-09-08 |
+| **Rim width, FRONT** — flange to flange, calipers (issue #14) | **77.86 mm** → ~70–74 mm internal · ~70 mm nominal | 2026-09-17 |
+| **Rim width, REAR** — flange to flange, calipers (issue #14) | **89.08 mm** → ~81–85 mm internal · ~80 mm nominal | 2026-09-17 |
 | Rear suspension travel (spec 50 mm — verify, non-catalogue shock fitted) | | |
 | Tyre-to-controller gap, static | | |
-| Tyre-to-controller gap at FULL compression (must stay positive) | | |
-| Tire rolling circumference (mm) | | |
+| ⚠️ **Tyre-to-controller gap at FULL compression** — must exceed **38 mm** for the BDGR 20×4.5 (issue #14). **Gate before mounting the rear tyre** | | |
+| Tire rolling circumference (mm) — rear, with the 20×4.5 fitted | | |
+| Riding pressure — front / rear | | |
+| Swingarm clearance each side, 20×4.5 fitted | | |
 | FarDriver: battery current cap / phase current | 80A / 200A | 2026-09-06 |
 | FarDriver: LVC / HVC | 60.0V / 90.7V factory | 2026-09-06 |
 | FarDriver: reverse gear | ⚠️ **still ON in the controller** (`BackEnable = 1`) — must be OFF, issue #6 | 2026-09-08 |
@@ -762,8 +786,8 @@ verification (✔) steps. ⚠️ = safety-critical. **Updated:** 2026-09-11
 | Torque arms | Grin **V6** ×2 · clamp-mount · both sides |
 | Rotor | stock **203mm 6-bolt**, reused · **+~1mm ring shims** (issue #1) |
 | Axle hardware | shop-made washers ×2 (issue #2; material unrecorded — issue #12) · double-nut · R-clip · torque ⬜ from Powerful Lithium |
-| Tires | Shinko 241 **3.00-16** ×2 (front + rear) + 16" tubes |
-| Brake fluid | **MINERAL OIL** (confirmed) |
+| Tires | **Huntsman Override 20×4.0** front · **BDGR Override 20×4.5** rear · Super73 **20 × 4/4.5/5** tubes. ⛔ Not the Shinko 241 3.00-16 — both rims are far too wide for it (issue #14) |
+| Brakes | **Magura MT5** front + rear · Magura pads · **Royal Blood** (mineral oil) · 2-wire NO switch per lever |
 | **Brake circuit** | `revv1-brake-circuit.md` — each lever, through 1N4148 steering diodes: pulls FarDriver `BL` low (motor cut, `Brake: 0-StopWhenGround`) · lights the brake lamp via P-FET `AO3407A` (no firmware) · signals the module (IN-05/06) · grey `BH` capped |
 | **Lighting** | ESP32 module, built incrementally — lamps, signals, horn (plan §6); brake lamp from the brake circuit |
 | **Throttle** | **FarDriver-bundled twist throttle installed** (2026-09-06) · red button (blue + green) → blue/red `XH` + GND direct, hold = boost, `BoostPin` PIN17 (interim; → ESP32 module later, plan D4) · bar controls from the new switch sets (D20) |

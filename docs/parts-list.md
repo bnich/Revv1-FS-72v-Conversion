@@ -23,17 +23,23 @@ to printed brackets ([`revv1fs-fardriver72450`](https://github.com/bnich/revv1fs
 
 | Part | Product | Cost |
 |---|---|---|
-| **Tyres** | **Shinko SR241** 3.00×16 (45P), tube type, trials — ×2 | ~$100 |
-| **Tubes** | 16" | — |
+| **Tyre — front** | **Super73 Huntsman Override 20×4.0** — Vee Tire Override carcass | ⬜ record |
+| **Tyre — rear** | **Super73 BDGR Override 20×4.5** — Vee Tire Override carcass | ⬜ record |
+| **Tubes** | Super73 fat tube — spec **20 × 4 / 4.5 / 5**, one part covers both ends — ×2 | ⬜ to order |
+| ⛔ **Tyres — Shinko SR241** 3.00×16 (45P), trials — ×2 | **Not in the build** (issue #14) — both rims are far too wide. ⬜ Return or sell on | ~$100 |
 | **Torque arms** | **Grin Technologies V6** universal ebike torque arm — ×2, clamp-mount | ~$100 |
-| **Brake pads** | **Shimano D02S sintered** — ×2 sets | ~$60 |
+| **Brakes** | **Magura MT5** 4-piston, front + rear, with the pads they ship with + a 2-wire normally-open brake switch per lever | ⬜ record |
+| ⛔ **Brake pads — Shimano D02S sintered** ×2 sets | **Not in the build** — a Shimano D-type shape, which the MT5 calipers do not take. ⬜ Return or sell on | ~$60 |
 | **Rotor shims** | 0.2 mm 6-bolt ring shims ×4 (0.80 mm total) + M5×0.8 bolts | ~$15 |
 | **Axle washers** | Shop-made ×2 | ~$10–20 |
 
-⚠️ The "20×4" rim is **ISO 406 = motorcycle 16-inch** bead seat, so 3.00-16 moto tyres fit with no
-conversion. Grin **V6**, not V7 — V7 is not made in 16 mm.
+⚠️ The "20×4" rim is **ISO 406 = motorcycle 16-inch** bead seat, so a 16" moto tyre will *mount* —
+but **bead seat diameter is not fitment**. Both rims are far too wide for a 3.00-16: **front ~72 mm,
+rear ~83 mm internal against a 54.6 mm maximum** (issue **#14**). The build runs **20×4.0 front /
+20×4.5 rear**. Grin **V6**, not V7 — V7 is not made in 16 mm.
 
-⚠️ Brake fluid is **mineral oil**, never DOT. Pads are **D02S sintered**, not D03S resin.
+⚠️ Brake fluid is **mineral oil** (Magura Royal Blood), never DOT. Pads are **Magura's** — the
+Shimano D02S no longer fit.
 
 ## Controls
 
@@ -88,6 +94,5 @@ Which panel the bike ends up with is open. Mount for the 5":
 
 ## Still to source
 
-- Mineral oil and bleed kit (optional braided lines)
 - Brake-circuit components — 1N4148 steering diodes, `AO3407A` P-FET, 10 kΩ, 100 nF, 1 A fuse
 - ESP32 body module — see [`fardriver-esp32-body-module`](https://github.com/bnich/fardriver-esp32-body-module)

@@ -1,10 +1,10 @@
 # Installer Work Order — Ride1Up REVV1 FS → 5,000W / 72V Conversion
 
 **Prepared for:** installing technician / shop
-**Vehicle:** Ride1Up REVV1 FS (moped-style e-bike, 20×4 / ISO 406 wheels)
+**Vehicle:** Ride1Up REVV1 FS (moped-style e-bike, 20×4 / ISO 406 wheels — rims measure ~72 mm front / ~83 mm internal rear)
 **Job:** Replace the stock drivetrain with a 5,000W 3T hub motor on a 72V system, with
 new controller, battery, high-current safety gear, torque arms, tires, and brake service.
-**Date:** 2026-06-29 · **Updated:** 2026-09-11
+**Date:** 2026-06-29 · **Updated:** 2026-09-17
 
 > **Scope note:** This is a high-power aftermarket conversion. It voids the Ride1Up
 > warranty, exceeds e-bike power limits (off-road or registered-vehicle use only), and
@@ -25,9 +25,10 @@ new controller, battery, high-current safety gear, torque arms, tires, and brake
 | 6b | **2-wire key switch** + **~2A inline fuse** | Gates the **FarDriver KEY wire only** — low-current logic, **not** main current |
 | 6c | ⛔ **Flipsky FSESC 75200 Pro V2.0** — **NOT IN THIS BUILD** | A **VESC motor controller** mis-ordered as a switch (issue #3). **Do not install.** Leave boxed / return |
 | 7 | **Grin V6 torque arms ×2** | clamp-mount · hardened 17-4 splined insert · 12/14/16mm axle |
-| 8 | **Shinko 241** tires (pair) + 16" moto tubes | 3.00-16 (fits the 20×4/ISO-406 rim) · tubed |
+| 8 | **Super73 Huntsman Override 20×4.0** (front) + **Super73 BDGR Override 20×4.5** (rear) + Super73 **20 × 4/4.5/5** tubes ×2 | Vee Tire **Override** carcass both ends · tubed · ⚠️ rear fitting is **gated on a clearance measurement** — see step 5 |
+| 8b | ⛔ **Shinko 241 3.00-16 pair — NOT IN THIS BUILD** | Both rims are **far too wide** for a 3.00-16 (54.6 mm max approved vs ~72 / ~83 mm actual) — issue #14. **Do not fit.** Leave boxed / return |
 | 9 | **AMASS XT90-S** connectors (5-pack) | for charger lead / battery-removal plug |
-| 10 | **Brake service parts** | stock 203mm 6-bolt rotor **reused** · pads = **Shimano Saint D-type, sintered (D02S)** · fluid = **mineral oil** |
+| 10 | **Brakes — Magura MT5, front + rear** (✅ fitted) | stock 203mm 6-bolt rotors **reused** (rear keeps its 0.80 mm shims, issue #1) · Magura pads as supplied · fluid = **mineral oil (Magura Royal Blood)** · 2-wire normally-open brake switch per lever |
 | 11 | 8 AWG silicone wire, heat-shrink, ring terminals (as needed) | main-lead extension / terminations |
 | 11a | **Axle washers ×2** — ✅ fitted 2026-09-08 (issue #2) | Shop-made; ⚠️ **material/hardness unrecorded** (issue #12, open). If ever replaced: a **keyed torque washer** for a 16mm axle / 11mm flats (the stock washer is this type — D-hole + raised step into the dropout slot), or, on a flat dropout face, an **M16 hardened flat washer, DIN 433 / SAE narrow** (ID ~17 · OD 27–28mm · ~3mm). ⚠️ **Never ~30mm or ~34mm OD** — it sits cocked at the dropout. Axle takes a **double-nut** (thick = clamp, slim = jam) and has a cross-drilled tip for an R-clip |
 | 11b | **6-bolt rotor ring shims, 0.2mm ×5** (M5 ID) + **M5×0.8 rotor bolts ~2mm longer** if the shims cost thread engagement | ✅ fitted 2026-09-08: **4 × 0.2mm = 0.80mm** (planned 5), rotor centred, rear brake works (issue #1 — the rear rotor sat ~1mm inboard of the caliper on the new hub). ⬜ Record whether the longer bolts were needed |
@@ -49,7 +50,7 @@ new controller, battery, high-current safety gear, torque arms, tires, and brake
      build — do not install it.** It is a VESC motor controller (issue #3); its blue/green/yellow
      leads are **phase outputs**, and bolting them to the FarDriver's phase studs shorts two
      output stages together and destroys both units.
-3. **Brake fluid is MINERAL OIL** (marked on the lever reservoir). Use bicycle mineral oil only;
+3. **Brake fluid is MINERAL OIL** — the brakes are **Magura MT5**; use **Magura Royal Blood**,
    never DOT (it destroys the seals).
 4. **Battery-current cap:** the FarDriver battery-current limit is set to **80A** (§6) — verify
    it, do not raise it. Sustained current above that overheats the hub motor.
@@ -203,8 +204,8 @@ connect them to anything at pack voltage.
 ## 4. Installation sequence
 
 1. **Strip stock drivetrain:** remove the stock rear wheel/motor and disconnect the stock
-   wiring. **Keep the brake levers** — their switches drive the brake circuit (§5.3); check their
-   type first (`revv1-brake-circuit.md` §4, M3). The handlebar pods are replaced by new switch sets
+   wiring. The brakes are **Magura MT5** (✅ fitted); each lever's **2-wire normally-open brake
+   switch** drives the brake circuit (§5.3; M3 ✅). The handlebar pods are replaced by new switch sets
    (ESP32 plan D20).
 2. **Fit the new motor wheel** in the rear dropouts. Orient the phase-wire exit, route the
    motor cable forward.
@@ -225,12 +226,24 @@ connect them to anything at pack voltage.
    ⛔ **Do NOT grind, file, or dress the dropout/frame to make a washer seat.** A welded tab sits
    there, at the highest-stressed joint on the bike; dressing a weld toe starts a fatigue crack.
    Correct the **washer** instead.
-5. **Mount tires — BOTH wheels:** Shinko 241 3.00-16 with 16" moto tubes (motor specifies
-   tubed tires); **the front wheel gets the second tire.** Fit the tire **before** the rotor
-   goes on the rear hub (tire irons bend rotors). Balance if practical. Check front-tire
-   clearance at the fork arch under full compression and full steering lock. Then **reconnect
-   the pedal chain** to the motor's single-speed freewheel — check chainline + tension (chain
-   length may need adjusting); ensure the freewheel is tightened.
+5. **Mount tires — BOTH wheels** (motor specifies tubed tires; tubes are the Super73
+   20 × 4/4.5/5, one spec covers both ends):
+   - ⚠️ **REAR IS GATED. Before mounting anything, measure the tyre-to-controller gap at FULL
+     COMPRESSION.** The **BDGR 20×4.5 adds +38 mm of radius** over the 3.00-16 currently fitted,
+     so the gap must exceed **38 mm**. Measure with the old tyre still on — zip tie on the shock
+     shaft to capture max travel. ⛔ The controller is at its **35 mm** minimum drop and cannot be
+     raised. **If the gap is under 38 mm, STOP and call the owner** — the controller has to move,
+     or the wheel gets relaced. (issue #14)
+   - **Rear:** Super73 **BDGR Override 20×4.5**. Fit the tire **before** the rotor goes on the
+     rear hub (tire irons bend rotors). ✔ Check swingarm clearance both sides.
+   - **Front:** Super73 **Huntsman Override 20×4.0** — the stock diameter. ✔ Check clearance at
+     the fork arch under full compression and full steering lock.
+   - Seat both beads to the sidewall pressure, ✔ **confirm an even bead line all the way round**,
+     then set riding pressure and **write it down**. Balance if practical.
+   - ⬜ **Measure and record the rear rolling circumference** — it sets the speedo (see the
+     FarDriver config table).
+   - Then **reconnect the pedal chain** to the motor's single-speed freewheel — check chainline +
+     tension (chain length may need adjusting); ensure the freewheel is tightened.
 6. **Mount the controller** directly on the two printed under-seat brackets (the supplied enclosure
    is too large and is not used); route and connect **3 phase + 6 sensor
    (5 hall + 1 motor-temp)** leads to the motor. **Connectors mate directly — no adapter.** The
@@ -249,10 +262,10 @@ connect them to anything at pack voltage.
    through the fuse/XT90-S line.
 9. **Connect controls:** **FarDriver throttle → its harness throttle lead** (§5.2) and the
    **FarDriver display**. Brake cutoff: brake circuit step 1 (step 10a, §5.3).
-10. **Brake service:** install **Shimano D02S sintered** pads (front + rear), fresh
-    **mineral oil** + full bleed, optional braided lines. Verify firm lever, no fade.
-10a. **Brake circuit, step 1 — motor cut** (§5.3): check each lever's switch type first
-    (`revv1-brake-circuit.md` §4, M3), then wire each lever through its own **1N4148** to the
+10. **Brakes:** ✅ **Magura MT5** fitted front + rear, Magura pads, hoses cut to length (new barb
+    + olive) and refilled with Magura Royal Blood. Verify firm lever, no fade, no leaks.
+10a. **Brake circuit, step 1 — motor cut** (§5.3): each lever's brake switch is a **2-wire
+    normally-open** contact (M3 ✅, works as drawn); wire each lever through its own **1N4148** to the
     FarDriver **`BL`** (yellow/green), lever return to B−, with **100 nF** `BL` ↔ B− at the
     controller (brake circuit §2, §6). The level and motor-cut tests (brake circuit §7.1–§7.2,
     and §8 below) gate the first ride.
@@ -298,7 +311,7 @@ Each lever, through its own **1N4148** steering diodes, does three things in har
 Everything shares the pack's B−, so no isolation is needed; the diodes keep the three pull-ups
 apart. Built in three steps (brake circuit §6): **step 1 now** — levers → diodes → `BL`, 100 nF at
 the controller; **step 2** with the module's 12 V rail — brake lamp; **step 3** with the module —
-sense. ✔ Check each lever's switch type first (brake circuit §4, M3). The motor-cut test gates the
+sense. Each lever's switch is a 2-wire normally-open contact (brake circuit §4, M3 ✅). The motor-cut test gates the
 first ride (§8).
 
 ### 5.4 ⚠️ Electrical rules
@@ -339,7 +352,7 @@ the 2026-09-08 changes and would put `Brake` back to `7-Disabled` (issue #8) and
 | Low-voltage cutoff | **60.0V** (3.0V/cell); power derate starts **+2V** (62V) |
 | Over-voltage protect | **90.7V / restore 88.7V — factory internal default for a 72V-rated unit. Leave it.** ⚠️ Do **not** set "~84V": a full pack sits at 84.0V and would trip it. With regen off the pack can never exceed 84.0V anyway |
 | **Reverse gear** | **Must be OFF** — the pedals are chain-linked to the hub through the freewheel; a powered reverse spins the cranks backwards into the rider's legs. ⚠️ **Still ON in the controller** (issue #6, open): `BackEnable = 1` in every controller export (2026-09-06 and both 2026-09-08); an in-app change on 2026-09-08 did not take. ⬜ Import the noreverse file above and confirm reverse OFF in a fresh export. If the import does not take, set `Backward Pin` → `13-Invalid` (`revv1-fardriver-nd72450-pinout.md` §3), which disconnects the RE wire from reverse. The RE wire stays capped |
-| Speedo / wheel | the app takes **tire width / aspect / rim = 80 / 100 / 16** (= 3.00-16) and **transmission ratio 1.000** — there is **no circumference field**. ✔ Check against GPS on the road test; correct via the ratio if off |
+| Speedo / wheel | the app takes **tire width / aspect / rim** plus a **transmission ratio** — there is **no circumference field**. ⚠️ **`80 / 100 / 16` was the 3.00-16 and is now WRONG** (issue #14): the 20×4.5 rear adds **+13.6 %** of rolling circumference (~1753 → ~1992 mm), so the speedo reads that much low. ⬜ Re-derive — candidate **110 / 100 / 16** (OD 626 mm) — then ✔ check against GPS on the road test and correct via the ratio |
 | Park (P) | **`Park: 2-Disabled`** in the app — no P gear, no auto-park |
 | Display one-line | **Working:** `Special Frame` **21** (not 246 — RS485 PC mode, sends nothing) with the display purple on the **BROWN** lead; the light-blue `SPD` is dead on this unit (issue #7). DATA0/1 = 8 / 97, byte option 3, 0.9 ms / Stop 2 (app label 124 ms), **`Speed pulse` 1**. Speed scale settled (issue #7b): `Speed pulse` 1 was the whole fix; transmission ratio stays **1.000**. ⬜ Final trim vs GPS on the road test |
 
@@ -347,10 +360,11 @@ the 2026-09-08 changes and would put `Brake` back to `7-Disabled` (issue #8) and
 
 ## 7. Owner confirmations (resolved)
 
-- [x] **Pads:** LBN 4-piston caliper = **Shimano Saint/Zee D-type shape** (Ride1Up brake chart).
-  Fit **sintered metal — Shimano D02S** or equiv (NOT D03S, which is resin), front + rear. Stock
-  rotor (203mm 6-bolt) reused.
-- [x] **Brake fluid: MINERAL OIL** (marked on the lever). Use mineral only.
+- [x] **Brakes: Magura MT5**, front + rear, with Magura's pads. Stock rotors (203mm 6-bolt)
+  reused; the rear keeps its 0.80 mm shims (issue #1) and the MT5 caliper dropped in.
+- [x] **Brake fluid: MINERAL OIL — Magura Royal Blood.** Never DOT.
+- [x] **Brake switches (M3):** one per lever, **2 wires, open released / closed squeezed**
+  (normally open) — the brake circuit works as drawn.
 - [x] **Cadmus fits the Center Storage Cage** — confirmed by the battery vendor ("designed to be
   housed and stored in the official storage cage accessory"). Cage fits the FS frame and is
   already owned.
@@ -371,7 +385,7 @@ the 2026-09-08 changes and would put `Brake` back to `7-Disabled` (issue #8) and
    in: each lever lights the brake lamp (§7.3) and the module reads it (§7.4).
 5. **Torque-arm check:** no axle movement under load.
 6. **Low-speed road test** first; recheck fastener torque and for any heat/odor after.
-7. Confirm speedo against GPS (if off, adjust the app's **transmission ratio**; tire fields stay 80/100/16).
+7. Confirm speedo against GPS (if off, adjust the app's **transmission ratio**). ⚠️ The tire fields are **no longer 80/100/16** — that was the 3.00-16 (issue #14).
 8. **Lighting** (as each ESP32 module output is built): running light, low beam, **high beam**,
    tail/brake, **turn signals**, hazard and **horn** work. The **throttle drives the FarDriver**
    correctly (0% at rest, smooth sweep, brakes cut power).

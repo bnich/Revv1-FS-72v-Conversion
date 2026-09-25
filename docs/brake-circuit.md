@@ -1,7 +1,8 @@
 # REVV1 — Brake circuit (motor cutoff + brake light)
 
-**Created:** 2026-09-11 · **Status:** design adopted by the owner 2026-09-11. ⬜ **M3** (§4) confirms
-the lever switch type before anything is built.
+**Created:** 2026-09-11 · **Status:** design adopted by the owner 2026-09-11. ✅ **M3** (§4): the
+levers are **Magura MT5**, each with a **2-wire normally-open** brake switch — the circuit works as
+drawn.
 
 ---
 
@@ -120,8 +121,12 @@ output**. Check each lever before building ([ESP32 module
 `docs/inputs-bench-session.md`](https://github.com/bnich/fardriver-esp32-body-module/blob/main/docs/inputs-bench-session.md)
 sitting B):
 
+✅ **Measured 2026-09-25 on the Magura MT5 levers: two wires per lever, open released, closed
+squeezed — normally open, one switch per lever.** The steps below are how to check a replacement
+lever.
+
 1. **Count the wires from each lever.** Two = a switch. Three = a powered sensor (supply, ground,
-   signal). The lever wires run in the handlebar loom — **M2** identifies them.
+   signal).
 2. **Two wires:** ohmmeter across the pair, released vs squeezed.
    - Open → ~0 Ω: **normally open** ✅ — works as drawn.
    - ~0 Ω → open: **normally closed** ⚠️ — inverts the logic (motor cut and lamp on at rest). ⬜ Needs

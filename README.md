@@ -59,8 +59,8 @@ Open blockers are tracked in [docs/issues-log.md](docs/issues-log.md) and at the
 | **Motor** | 5,000 W 3T hub · 16 mm axle, 11 mm flats · 6-bolt ISO rotor · tubed · single-speed freewheel |
 | **Controller** | FarDriver **ND72450**, 20S / 72 V, **80 A line** (capped) / 200 A phase |
 | **Battery** | 72 V / 20S, Molicel P42A, 34 Ah, **84.0 V full**, smart BMS |
-| **Wheels** | "20×4" rim = **ISO 406 = moto 16-inch** bead seat — 3.00-16 tyres fit with no conversion |
-| **Brakes** | Stock 203 mm 6-bolt rotor · **mineral oil, never DOT** · Shimano D02S sintered pads |
+| **Wheels** | "20×4" rim = **ISO 406 = moto 16-inch** bead seat, but both rims are **far too wide for a 16" moto tyre** (issue #14) — runs **20×4.0 front / 20×4.5 rear** |
+| **Brakes** | **Magura MT5** front + rear, Magura pads · stock 203 mm 6-bolt rotors · **mineral oil (Magura Royal Blood), never DOT** · a normally-open 2-wire brake switch per lever |
 | **Main line** | `Battery(+) → 125 A Class T fuse → XT90-S → Controller B+` |
 
 Sensors: the motor's lead carries **6 wires = 5 hall + 1 motor temp**. Motor-temp protection is

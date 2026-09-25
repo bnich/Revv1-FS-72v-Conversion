@@ -4,9 +4,9 @@
 **Goal:** Replace stock drivetrain with the Powerful Lithium 5,000W 3T hub motor
 **Config:** 72V drivetrain conversion (vendor-recommended max-power path)
 **Running on a temporary setup (2026-09-11):** FarDriver on the printed brackets, temporary throttle and key switch, battery — it moves under power; no display, lights or other electronics, and **no fuse of any kind on the main line**. Lighting, signals, horn and brake light come from the ESP32 module, built incrementally.
-**Status:** Ordered ✅ — tires, motor, controller, battery + charger, torque arms, key switch, brake pads · Cage owned ✅ · ⬜ to order: Class T fuse + block, brake consumables, brake circuit parts (module BOM group G)
+**Status:** Ordered ✅ — motor, controller, battery + charger, torque arms, key switch, brake pads · **New tyres bought 2026-09-17** (20×4.0 front / 20×4.5 rear — the Shinko 241 pair is out of the build, issue #14) · Cage owned ✅ · ⬜ to order: Class T fuse + block, tubes, brake consumables, brake circuit parts (module BOM group G)
 **Battery + charger RECEIVED 📦 2026-08-14** — incoming inspection pending (see note below)
-**Created:** 2026-06-28 · **Updated:** 2026-09-11
+**Created:** 2026-06-28 · **Updated:** 2026-09-17
 
 > Prices marked ✓ are vendor-confirmed (Powerful Lithium, June 2026).
 > Prices marked *(est.)* are estimates for parts the vendor doesn't sell.
@@ -17,7 +17,9 @@
 
 | Item | Status | Cost |
 |------|--------|-----:|
-| Tires — Shinko 241 3.00-16 (pair) | ✅ **ORDERED** 2026-06-28 | ~$100 *(est.)* |
+| Tires — **Huntsman Override 20×4.0** (front) + **BDGR Override 20×4.5** (rear) | ✅ **BOUGHT** 2026-09-17 (issue #14) | ⬜ **record actual** |
+| Tubes — Super73 fat tube, **20 × 4 / 4.5 / 5** ×2 (one spec covers both ends) + rim strips | ⬜ **TO ORDER** | ~$30 *(est.)* |
+| ⛔ Tires — Shinko 241 3.00-16 (pair) | ⚠️ Ordered 2026-06-28 — **not in the build: both rims are far too wide for a 3.00-16 (issue #14).** ⬜ Return or sell on | ~$100 *(est.)* |
 | Center Storage Cage | ✅ owned | — |
 | 5,000W 3T motor | ✅ **ORDERED** 2026-06-28 | $760 |
 | FarDriver 72450 controller (loaded) | ✅ **ORDERED** 2026-06-28 | $550 |
@@ -36,8 +38,8 @@
 | Electrical — key switch → **FarDriver KEY wire** (+ ~2A inline fuse) — *"Universal Key Ignition for Ebike 12V-96V Anti-Theft"* | ✅ **PURCHASED** 2026-09-07 | ~$12 *(est. — ⬜ confirm actual)* |
 | Electrical — XT90-S (5-pack) — **main-line make/break + anti-spark** (Option B) | ✅ owned | ~$15 |
 | Electrical — 8 AWG main wire (if leads need extending) | ⬜ to order | ~$15 |
-| Brakes — pads, Shimano D02S sintered ×2 sets | ✅ **ORDERED** 2026-06-29 | ~$60 |
-| Brakes — mineral oil + bleed kit (+ optional braided lines) | ⬜ to order | ~$20–120 |
+| **Brakes — Magura MT5, front + rear, with a brake switch per lever** | ✅ **FITTED** — hoses cut to length, refilled | ⬜ price not recorded |
+| ⛔ Brakes — pads, Shimano D02S sintered ×2 sets — **not in the build** (Shimano shape; the MT5 takes Magura pads) | ✅ **ORDERED** 2026-06-29 · ⬜ return or sell on | ~$60 |
 | **Axle washers ×2** — issue #2 | ✅ **FITTED 2026-09-08** — shop-made by the owner; material and nut torque open (issue #12). ⬜ actual cost | ~$10–20 *(est.)* |
 | **Rotor — 0.2mm 6-bolt ring shims + M5×0.8 bolts** — issue #1 | ✅ **FITTED 2026-09-08** — 4 shims (0.80 mm), rotor centred, brakes work. ⬜ actual cost | ~$15 *(est.)* |
 | **Brake circuit parts** (1N4148 steering diodes, `AO3407A` P-FET, 10 kΩ, 100 nF, 1 A fuse) — `revv1-brake-circuit.md` §3; part list in the module BOM, group G | ⬜ to order | *(counted in the module BOM, ~$5)* |
@@ -125,17 +127,19 @@ service + upgrade, not full replacement.*
   (the 2026-09-08 export with reverse off). **Not `…20260906_revv1-import-v2.heb`** — it predates the
   2026-09-08 changes and would reset `Brake` to `7-Disabled` and `SpeedPulse` to 11 (issues #6/#8).
 
-**Brakes — stock 4-piston/203mm carries over (service + upgrade)**
-- ✅ Brake fluid: **MINERAL OIL — confirmed** (marked on the lever reservoir). Use
-  [Tektro/TRP Mineral Oil](https://www.amazon.com/Tektro-Hydraulic-Mineral-Brake-Fluid/dp/B010O03Z1Q)
-  or equivalent bicycle mineral oil — **~$15–20**
+**Brakes — Magura MT5, front + rear; stock 203mm rotors carry over**
+- ✅ **Magura MT5** 4-piston, front + rear, with Magura's pads. **Chosen mainly for form factor:
+  the MT5 levers sit better beside the new left and right switch pods on the bar** (plan D20).
+  Hoses cut to length (new barb + olive) and refilled. ⬜ Price not recorded
+- ✅ Brake fluid: **mineral oil — Magura Royal Blood**. Never DOT
+- ✅ **Brake switches:** one per lever, **2-wire, normally open** (M3) — the brake circuit works as
+  drawn
 - ✅ **Rotor: 203mm, 6-bolt ISO** (stamped "203") — transferred to the new 6-bolt hub, shimmed
-  0.80 mm to centre it in the caliper (issue #1)
-- ✅ **Pads — ORDERED: Shimano D02S (sintered metal) ×2 sets** (front + rear). Caliper =
-  LBN 4-piston / Shimano Saint D-type shape. (D02S sintered, not D03S resin.) Still to buy:
-  **mineral oil + bleed kit** (+ optional Saint-compatible braided lines). — **~$60 + ~$20–120**
+  0.80 mm to centre it in the caliper (issue #1); the MT5 caliper dropped in on the same shims
+- ⛔ **Shimano D02S pads ×2 sets (ordered, ~$60) are not used** — a Shimano D-type shape for the old
+  LBN calipers, which the MT5 does not take
 
-**Tier 2 subtotal: ~$200–360** *(brake pads ordered; consumables to buy)*
+**Tier 2 subtotal: ~$180–240** *(excludes the MT5 brakes — ⬜ price not recorded; the D02S pads in it are unused)*
 
 ## Tier 3 — Labor
 
@@ -152,15 +156,18 @@ service + upgrade, not full replacement.*
   switch, D02S pads, axle washers, rotor shims, XT90-S (owned). Cage owned.
   - ⚠️ **The ANL pair (~$45, issue #10) and the Flipsky (~$90, issue #3) are not in the build.**
     Committed drops to **~$3,467** if the Flipsky is returned, or **~$3,512** if the ANL pair is.
+  - ⚠️ **The Shinko 241 pair (~$100, issue #14) is also out of the build**, replaced by the
+    20×4.0 / 20×4.5 fat pair bought 2026-09-17 — ⬜ price not yet recorded, so the total is not
+    yet restated.
   - **The Flipsky's actual price is unconfirmed** — the FSESC 75200 typically lists **$180–260**,
     so Committed may be understated by ~$90–170. Actual prices for the key switch, washers and
     shims are unconfirmed too. **Re-run these totals once receipts and return outcomes are known.**
-- ⬜ **Remaining: ~$380–670** — **Class T fuse + block (issue #10) ~$110–150** (estimate; listings
-  seen 2026-09-08: `JLLN125` $43.16 at Zoro, `5007100` $44.98–76.11 street) · brake consumables
-  (mineral oil + bleed kit) ~$20–120 · **~2A inline fuse** · install ~$250–400. Excludes the 8 AWG
+- ⬜ **Remaining: ~$360–550** — **Class T fuse + block (issue #10) ~$110–150** (estimate; listings
+  seen 2026-09-08: `JLLN125` $43.16 at Zoro, `5007100` $44.98–76.11 street) · **~2A inline fuse** ·
+  install ~$250–400. Excludes the 8 AWG
   wire — only needed if the pack's leads are too short (decide at the 0.5 incoming inspection) —
   and the brake circuit parts, which the module BOM counts (group G, ~$5).
-- 🏁 **All-in estimate: ~$3,937–4,227** (before any returns)
+- 🏁 **All-in estimate: ~$3,917–4,107** (before any returns; ⚠️ excludes the Magura MT5 brakes, price not yet recorded)
 
 ---
 
@@ -168,8 +175,8 @@ service + upgrade, not full replacement.*
 
 - ⬜ **Order the Class T fuse + block** (issue #10) — the main line currently has no fuse at all.
 - ⬜ **Brake circuit step 1** (levers → steering diodes → FarDriver `BL`, `revv1-brake-circuit.md`
-  §6) once **M3** confirms the lever type (§4); its motor-cut test (§7.2) is issue #8's gate before
-  riding.
+  §6) — the MT5 switches are normally open (M3 ✅, §4); its motor-cut test (§7.2) is issue #8's gate
+  before riding.
 - ⬜ **Battery incoming inspection** (checklist 0.5) and a **test charge** before the charger
   warranty runs out (~2026-09-14 from delivery).
 - ⬜ **Returns:** the Flipsky FSESC (issue #3) and the Blue Sea 5127 + 5005 (issue #10, or keep as
@@ -229,9 +236,11 @@ service + upgrade, not full replacement.*
   main line.
 - **Over-voltage protect left at the factory 90.7V / 88.7V.** Never set it to ~84V — a full 20S
   pack sits at 84.0V and would trip it. Regen is off, so the pack can't exceed 84.0V anyway.
-- **Speedo is set by tire size, not circumference.** The app takes width / aspect / rim
-  (80 / 100 / 16 = 3.00-16) plus a transmission ratio (1.000); `SpeedPulse` 1 for the one-line dash.
-  Verify against GPS and trim.
+- **Speedo is set by tire size, not circumference.** The app takes width / aspect / rim plus a
+  transmission ratio; `SpeedPulse` 1 for the one-line dash. ⚠️ **`80 / 100 / 16` is the 3.00-16 and
+  is now wrong** — the 20×4.5 rear adds **+13.6 %** of rolling circumference (~1753 → ~1992 mm), so
+  the speedo would read that much low. ⬜ Re-derive it (candidate **110 / 100 / 16**, OD 626 mm),
+  then trim the transmission ratio against GPS (issue #14).
 - **Controller: 72450, not 72680.** A 5kW motor draws ~70A at 72V; the 72450's 200A
   battery current is ample. 72680 would be unusable overkill (and the 34Ah BMS can't feed
   it). Saved $100.
@@ -241,11 +250,20 @@ service + upgrade, not full replacement.*
   **spare gets capped**. The lead carries **6 wires — 5 hall + 1 motor-temp** (yellow/green/blue =
   Hall A/B/C, red = Hall+, black = GND, **white = motor temp**), so **motor-temp protection is
   enabled** in the FarDriver app.
-- **Tires: Shinko 241 3.00-16, not 705.** The 705 has no 16" size (smallest is 17"). The
-  241 is the street-tread sibling of the stock 244 — better grip and wear at ~45 mph.
-- **Wheel sizing fact (no conversion needed):** the Revv1's "20×4" rim is ISO 406
-  (~406 mm bead seat) = a motorcycle "16-inch." So 16" moto tires (3.00-16) fit the stock
-  rims AND the new 20×4 motor wheel with no conversion.
+- **Tires: fat, not moto — Huntsman Override 20×4.0 front, BDGR Override 20×4.5 rear**
+  (2026-09-17, issue #14). The Shinko 241 3.00-16 pair is **out of the build**: both rims are far
+  too wide for it (front ~72 mm, rear ~83 mm internal against a **54.6 mm** maximum), which stands
+  the sidewalls up, kills carcass compliance and is the prime suspect for the bumpy ride. No 16"
+  moto tire suited to an 83 mm rim clears the frame — the 130-section sizes need **+27 mm per side**
+  at the swingarm. Both new tires are Vee Tire **Override** carcasses, so front and rear match; and
+  **20×4.0 is the stock diameter**, so the front's fork and steering-lock clearance is already proven.
+- **Moto load/speed ratings were never the point.** The 241 was chosen on tread pattern, 16"
+  availability and grip/wear at ~45 mph. Its **45P** marking (165 kg, 150 km/h) is roughly double
+  the headroom this vehicle needs, so moving to fat rubber gives up nothing that mattered.
+- **⚠️ Wheel sizing fact — bead seat diameter is NOT fitment.** The Revv1's "20×4" rim is ISO 406
+  (~406 mm bead seat) = a motorcycle "16-inch", so a 16" moto tire will *mount* on both the stock
+  rims and the 20×4 motor wheel. **Width is a separate question, and it fails.** Measure the rim
+  before believing a tire fits (issue #14).
 - **Torque arm: Grin V6 (not V7).** V7 is the high-power ideal but isn't made in 16mm; V6
   clamp-mount is next-best and skips the weak M5 fender eyelet by clamping to the frame.
 - **Power switch — Option B (2026-08-15, issue #3).** The **XT90-S stays on the main line** as
@@ -267,7 +285,8 @@ service + upgrade, not full replacement.*
   of an `AO3407A` P-FET low so it switches +12 V to the tail STOP lamp (hardware brake light, plan
   D23), and signals the module on IN-05/06. **No firmware sits in the brake path**, so a hung module
   still cuts the motor and lights the lamp; only a few milliamps flow through the lever switch, so a
-  microswitch, reed or sinking sensor output can drive it (M3 confirms which). It is built in steps
+  microswitch, reed or sinking sensor output can drive it (the MT5 switches are 2-wire normally
+  open, M3). It is built in steps
   with the bike: levers → `BL` now, the lamp when the 12 V rail is in, the module input when the
   module is in. Parts ~$5 (module BOM group G).
 
@@ -310,7 +329,4 @@ service + upgrade, not full replacement.*
 - Key switch 12V–96V 2-wire (**gates the FarDriver KEY wire**; needs a ~2A inline fuse on the
   B+ tap) — https://www.amazon.com/Universal-Ignition-Superior-Anti-Theft-Replacement/dp/B0D8J3MW85
 - AMASS XT90-S (5-pack) — ✅ owned (main-line make/break + anti-spark) — https://www.amazon.com/XT90-S-Female-Connector-Battery-Charge/dp/B00RVM8U5W
-- Tektro/TRP mineral oil — https://www.amazon.com/Tektro-Hydraulic-Mineral-Brake-Fluid/dp/B010O03Z1Q
-- Brake pads — Shimano Saint/Zee D-type shape, use **SINTERED**: genuine Shimano **D02S** (sintered metal — NOT D03S, which is resin) · Jagwire Pro Extreme Sintered https://worldwidecyclery.com/products/jagwire-pro-extreme-sintered-disc-brake-pads-for-shimano-saint-m820-m810-zee-m640 · Galfer E-Bike https://www.amazon.com/GALFER-Brake-Shimano-Unisex-Purple/dp/B07K8SCYPZ
-- Ride1Up brake chart (caliper = LBN; pad = Shimano BR-M810) — https://support.ride1up.com/support/solutions/articles/65000171965-replacing-disc-brake-pads-and-rotor
-- Ride1Up "Tektro & Zoom brakes" (fluid-type reference) — https://support.ride1up.com/support/solutions/articles/65000175779-error-25-700-series-tektro-brakes
+- Magura MT5 brakes (pads, Royal Blood, bleed and hose procedure: Magura's own service documents)

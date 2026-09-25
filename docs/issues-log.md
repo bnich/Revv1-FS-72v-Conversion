@@ -11,6 +11,7 @@ work order) per `CLAUDE.md`.
 
 | # | Issue | Found | Status |
 |---|-------|-------|--------|
+| 14 | ⚠️ **Both rims are far too wide for the 3.00-16 moto tyres** — front 32 % / rear 52 % over the tyre’s widest approved rim; the stretched carcass is the prime suspect for the bumpy ride | 2026-09-17 | 🟡 **Replacement tyres bought 2026-09-17** — BDGR 20×4.5 rear, Huntsman 20×4.0 front. ⚠️ ⬜ Rear needs **> 38 mm** tyre-to-controller gap at full compression — measure before mounting |
 | 13 | **The 3" dash will not take the CAN telemetry feed** — no ACK at 17 bitrates, and the CAN 18 byte map it expects is undocumented. No motor temp, controller temp or bus current on the glass | 2026-09-09 | ⏸️ **Parked 2026-09-10 by the owner** (plan D19) — module continues without it; dash keeps its one-line feed; temps move to the WiFi page. Re-opens on a CAN 18 map or a replacement panel |
 | 12 | ⚠️ **M16 axle-nut torque is unknown and the wheel is already assembled**; the washers are shop-made, material/hardness unrecorded | 2026-09-08 | 🔴 **Open — safety item.** Golden rule #6 forbids a guessed number; needs the figure from Powerful Lithium |
 | 11 | **Measuring rig would not assemble — controller orientation was backwards in the model** | 2026-09-08 | 🟢 Resolved — long axis runs **across** the bike, so each bracket takes the **106 mm** hole pair |
@@ -34,6 +35,98 @@ work order) per `CLAUDE.md`.
   them before ordering, and check the price paid against the price budgeted.
 - **Printed parts that bolt face to face must clear the heads of the fasteners already in that
   face** (#11).
+- **Check every dimension of a spec, not just the one that made the part look compatible**
+  (#14). A bead seat diameter that matches says the tyre will go on — not that it fits. The
+  same shape as #10’s voltage line.
+
+---
+
+## #14 — ⚠️ Both rims are far too wide for the 3.00-16 moto tyres
+
+**Status:** 🟡 **Replacement tyres bought 2026-09-17; rear clearance unverified** · **Found:**
+2026-09-17 (owner, chasing a bumpy ride at moderate speed)
+
+**Symptom.** The ride goes **very bumpy at moderate speed**. The first hypothesis was wheel
+imbalance — which a hub motor makes untestable by the usual method. A gravity spin test **cannot**
+work here: the motor’s cogging torque (23 pole pairs, ~1–2 N·m of magnetic detent) is 20–50× the
+gravity torque of any realistic imbalance. It would take **~750 g** at the rim before the wheel
+stopped where the mass says instead of where the magnets say. Unplugging the phase leads removes
+eddy braking but does nothing to cogging.
+
+**Root cause — the rims are 32 % and 52 % wider than the tyre’s widest approved rim.** Measured
+flange to flange with calipers, 2026-09-17:
+
+| Wheel | Flange to flange | Internal (less 2–4 mm/side) | Nominal | vs. 3.00-16 max (54.6 mm) |
+|---|---|---|---|---|
+| **Front** — stock Ride1Up | **77.86 mm** | ~70–74 mm | 70 mm fat rim | **~32 % over** |
+| **Rear** — Powerful Lithium motor wheel | **89.08 mm** | ~81–85 mm | 80 mm fat rim | **~52 % over** |
+
+The widest rim approved for a 3.00-16 is **2.15" = 54.6 mm** (application table: 1.60 / 1.85 /
+2.15). Both wheels are past the end of that chart, not near its edge. The rear rim is **wider than
+the tyre’s own nominal section** — 83 mm rim against a 76 mm tyre = **109 %**, where a healthy
+rim-to-tyre ratio is 60–75 %. The flange-thickness uncertainty does not change the verdict: both
+extremes land in the same place.
+
+Spread a tyre’s beads ~28 mm wider than design and the carcass is pulled taut between them. The
+sidewalls stand near-vertical and lose the compliance that normally absorbs road texture; the crown
+flattens and the contact patch squares off. ⭐ **That is a harsh ride by construction, and it is
+independent of balance.** It also produces the uneven bead line and radial runout that carry roughly
+**20× the force** of any plausible imbalance — 2 mm of runout into a ~100 N/mm carcass ≈ 200 N,
+against ~10 N from 30 g of imbalance at 40 km/h.
+
+⚠️ **These are bicycle rims**: no motorcycle bead safety hump, a bicycle load rating, and a moto bead
+stretched 28 mm past its maximum design width sitting on them at 84.0 V and 5 kW. Bead retention is
+the failure mode.
+
+**Why it was missed.** Both `parts-list.md` and `build-sheet.md` recorded the fitment as *"the
+‘20×4’ rim is ISO 406 = motorcycle 16-inch bead seat, so 3.00-16 moto tyres fit with no
+conversion."* That is **true about bead seat diameter and silent about width** — and bead seat
+diameter only says the tyre will go on. Neither rim’s width was ever measured, and neither vendor
+publishes it: Powerful Lithium’s spec table says *"Rim Size: 20" x 4""* and stops; Ride1Up
+publishes no rim specs at all.
+
+**Resolution — back to correctly-sized fat rubber (owner decision, 2026-09-17).**
+
+| | Part | Rim ratio | Outer Ø | Radius vs. 3.00-16 |
+|---|---|---|---|---|
+| **Rear** | **Super73 BDGR Override 20×4.5** — ✅ bought | **73 %** on 83 mm | ~634 mm | **+38 mm** |
+| **Front** | **Super73 Huntsman Override 20×4.0** — ✅ bought | **71 %** on 72 mm | ~608 mm | **+25 mm** |
+| Tubes | Super73 fat tube, spec **20 × 4 / 4.5 / 5** — one part covers both ends | ⬜ to order | | |
+
+Both are Vee Tire Co **Override** construction (3× puncture protection), so the carcass matches
+front to rear even though the tread differs — BDGR is big-block all-terrain, Huntsman a road/loose
+hybrid. **20×4.0 is the stock diameter**, so the front’s fork crown, arch, fender-mount and
+steering-lock clearances are already proven. The rear is the clearance-limited end, so 4.5 was taken
+over the available 5.0: a 73 % rim ratio for 13 mm less radius.
+
+⛔ **Moto tyres were ruled out, not merely passed over.** The only 16" moto tyres approved for an
+83 mm rim are the 130-section ones (130/80-16, 130/90-16 — approved 64–89 mm), at **+27 mm per side
+at the swingarm** and +28 to +41 mm of radius. **This rim wants a tyre the frame cannot take.**
+
+**Load and speed ratings were never the reason for the moto tyres.** `build-sheet.md` records the
+241 choice as tread pattern, 16" availability and *"better grip and wear at ~45 mph"*. The 45P
+marking (165 kg, 150 km/h) is about double the headroom this vehicle needs.
+
+**Outstanding.**
+1. ⚠️ ⬜ **Measure the tyre-to-controller gap at FULL COMPRESSION before mounting the rear tyre.** It
+   must exceed **38 mm** for the BDGR 4.5 to clear. The controller sits at the **35 mm** drop, which
+   is its physical minimum — *tyre clearance cannot be found by raising the controller*. Measure it
+   with the 3.00-16 still fitted (zip tie on the shock shaft to capture max travel); an unmounted
+   tyre is far easier to return than a mounted one. ⛔ **If the gap is under 38 mm, the controller
+   has to move or the motor gets relaced to a 47–55 mm rim.**
+2. ⚠️ ⬜ **Re-derive the FarDriver wheel setting.** `80 / 100 / 16` **is** the 3.00-16 and is now
+   wrong: rear rolling circumference goes from ~1753 mm to ~1992 mm (**+13.6 %**), so the speedo
+   would read that much low. Candidate starting point **110 / 100 / 16** (OD 626 mm, 1.3 % under),
+   then trim the transmission ratio against GPS in Phase 9.
+3. ⬜ Measure and log the **rear rolling circumference** once the new tyre is on.
+4. ⬜ Check **swingarm clearance** each side with the 4.5 fitted.
+5. ⬜ Order tubes and fresh rim strips.
+6. ⬜ Record a **riding pressure** — none is written down anywhere.
+7. ⬜ Decide what happens to the two Shinko 241s (~$100): return, or sell on.
+8. ⬜ **Re-assess the bumpy ride once the new tyres are on.** If it survives, the remaining suspects
+   are rear sag and rebound (50 mm of travel, non-catalogue shock, now carrying the pack and a 5 kW
+   hub) and tyre pressure. Also still open from this investigation: issue **#12**’s post-ride
+   axle-nut re-check, which is a hard gate and directly able to produce this symptom.
 
 ---
 
@@ -254,7 +347,8 @@ module. ⛔ Never a **`P+`** variant (they bundle Park, which stays Disabled) an
 high-brake input (grey `BH`, 12V) — keep it capped. `Follow` stays Disabled (no regen).
 
 **Outstanding:**
-1. ⬜ **M3 — the lever type** (`revv1-brake-circuit.md` §4) before step 1 is built.
+1. ✅ **M3 — the lever type** (`revv1-brake-circuit.md` §4): Magura MT5, a 2-wire normally-open
+   switch per lever — step 1 is built as drawn.
 2. ⬜ ⚠️ **Powered cut test — gate before riding:** `revv1-brake-circuit.md` §7.1 (levels at `BL`)
    and §7.2 (each lever cuts the motor, wheel off the ground). The temporary throttle on the
    current setup can drive the wheel for it.
@@ -521,7 +615,8 @@ radial.
 
 **Root cause:** the new hub's disc face sits **~1mm** further inboard than the caliper needs.
 Wheel position is not the lever — shifting the wheel as far as it goes widens the offset. **Not a
-brake problem:** the LBN 4-piston caliper, D02S pads and lever are all reused as-is.
+brake problem.** The brakes are now **Magura MT5** front + rear; the MT5 caliper dropped in on the
+same 0.80 mm shim stack.
 
 **Resolution:** **6-bolt ISO ring shims, 0.2mm each, M5 ID — 4 fitted = 0.80mm**, between the hub
 flange and the rotor. Ring shims keep all six bolt positions identical, so the rotor stays true;
@@ -531,4 +626,4 @@ thread engagement — verify full engagement, else use **M5×0.8 rotor bolts ~2m
 ⬜ Record whether longer M5 rotor bolts were needed (at 0.80mm the engagement is slightly better
 than the planned 1.00mm).
 
-The front brake is unaffected and works.
+The front rotor needs no shims.
